@@ -15,12 +15,17 @@ namespace Invoicing.API.Setup.Middleware
                 catch (NotFoundException ex)
                 {
                     context.Response.StatusCode = StatusCodes.Status404NotFound;
-                    await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+                    await context.Response.WriteAsJsonAsync(new { error = ex.Message, trace = ex.StackTrace });
                 }
-                catch (Exception)
+                catch (FluentValidation.ValidationException)
+                {
+                    // Allow fluent validation to throw a better error
+                    throw;
+                }
+                catch (Exception ex)
                 {
                     context.Response.StatusCode = 500;
-                    await context.Response.WriteAsJsonAsync(new { error = "Unknown internal exception occurred" });
+                    await context.Response.WriteAsJsonAsync(new { error = ex.Message, trace = ex.StackTrace });
                 }
             });
         }

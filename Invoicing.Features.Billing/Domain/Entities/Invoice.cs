@@ -1,22 +1,38 @@
 ﻿using Invoicing.Core.Domain;
 
-namespace Invoicing.Features.Billing.Domain
+namespace Invoicing.Features.Billing.Domain.Entities
 {
     public class Invoice : AggregateRoot
     {
         public static Invoice CreateInvoice(
+            Guid uniqueId,
             DateTime paymentDeadline,
+            List<LineItem> lineItems,
             Currency currency,
-            Customer customer)
+            Guid customerUniqueId)
+        {
+            return new Invoice(
+                uniqueId,
+                DateTime.MinValue,
+                paymentDeadline,
+                null,
+                lineItems,
+                Status.Draft,
+                currency,
+                customerUniqueId);
+        }
+
+        public static Invoice CreateInvoice(Guid customerUniqueId)
         {
             return new Invoice(
                 Guid.NewGuid(),
                 DateTime.MinValue,
-                paymentDeadline,
+                DateTime.MinValue,
+                null,
                 [],
                 Status.Draft,
-                currency,
-                customer);
+                Currency.GBP,
+                customerUniqueId);
         }
 
         public DateTime IssueDate { get; private set; }
@@ -25,7 +41,9 @@ namespace Invoicing.Features.Billing.Domain
         public Status Status { get; private set; }
         public Currency Currency { get; private set; }
 
-        public Customer Customer { get; private set; }
+        public string? CancellationReason { get; private set; }
+
+        public Guid CustomerUniqueId { get; private set; }
 
         public double Total => LineItems.Sum(x => x.Total);
         public double AmountPaid { get; set; }
@@ -35,26 +53,26 @@ namespace Invoicing.Features.Billing.Domain
             Guid uniqueId,
             DateTime issueDate,
             DateTime paymentDeadline,
+            string? cancellationReason,
             List<LineItem> lineItems,
             Status status,
             Currency currency,
-            Customer customer) : base(uniqueId)
+            Guid customerUniqueId) : base(uniqueId)
         {
             IssueDate = issueDate;
             PaymentDeadline = paymentDeadline;
             LineItems = lineItems;
             Status = status;
             Currency = currency;
-            Customer = customer;
             Status = status;
             Currency = currency;
-            Customer = customer;
+            CustomerUniqueId = customerUniqueId;
         }
 
         public void Update(
             DateTime? paymentDeadline,
             Currency? currency,
-            Customer? customer)
+            Guid? customerUniqueId)
         {
             if (Status != Status.Draft)
             {
@@ -71,9 +89,9 @@ namespace Invoicing.Features.Billing.Domain
                 Currency = currency.Value;
             }
 
-            if (customer != null)
+            if (customerUniqueId != null)
             {
-                Customer = customer;
+                CustomerUniqueId = customerUniqueId.Value;
             }
         }
 
@@ -107,10 +125,10 @@ namespace Invoicing.Features.Billing.Domain
                 throw new Exception("A line item can only be edited when an invoice is in draft.");
             }
 
-            var matchingLineItem = this.LineItems.Find(li => li.UniqueId == lineItemUniqueId);
+            var matchingLineItem = LineItems.Find(li => li.UniqueId == lineItemUniqueId);
             if (matchingLineItem == null)
             {
-                throw new Exception($"Line item with ID {lineItemUniqueId} could not be found on the invoice.")
+                throw new Exception($"Line item with ID {lineItemUniqueId} could not be found on the invoice.");
             }
 
             if (description != null)
@@ -138,11 +156,42 @@ namespace Invoicing.Features.Billing.Domain
         {
             if (Status == Status.Draft)
             {
+                if (LineItems.Count == 0)
+                {
+                    throw new Exception("You need at least one line item in an invoice.");
+                }
+                else if (PaymentDeadline < DateTime.UtcNow)
+                {
+                    throw new Exception("A payment deadline in the future must be selected.");
+                }
+
+                IssueDate = DateTime.UtcNow;
                 Status = Status.Sent;
             }
             else
             {
                 throw new Exception("You can only send invoices that are in draft.");
+            }
+        }
+
+        public void CancelInvoice(string cancellationReason)
+        {
+            if (Status == Status.Draft)
+            {
+                throw new Exception("You can only cancel invoices that have been sent.");
+            }
+            else if (Status == Status.Paid || AmountPaid != 0d)
+            {
+                throw new Exception("You can only cancel invoices that have not been paid or partially paid.");
+            }
+            else if (string.IsNullOrEmpty(cancellationReason))
+            {
+                throw new ArgumentException("You can only cancel invoices with a cancellation reason.");
+            }
+            else
+            {
+                Status = Status.Cancelled;
+                CancellationReason = cancellationReason;
             }
         }
     }

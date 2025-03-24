@@ -1,4 +1,4 @@
-﻿namespace Invoicing.Features.Billing.Domain
+﻿namespace Invoicing.Features.Billing.Domain.Entities
 {
     public enum Status
     {

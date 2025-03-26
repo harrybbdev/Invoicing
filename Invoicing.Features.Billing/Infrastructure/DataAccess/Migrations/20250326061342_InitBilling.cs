@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Invoicing.Features.Billing.Migrations
+namespace Invoicing.Features.Billing.Infrastructure.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class InitBilling : Migration

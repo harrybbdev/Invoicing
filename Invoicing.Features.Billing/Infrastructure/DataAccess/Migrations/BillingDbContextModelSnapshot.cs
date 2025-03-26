@@ -5,19 +5,16 @@ using Invoicing.Features.Billing.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Invoicing.Features.Billing.Migrations
+namespace Invoicing.Features.Billing.Infrastructure.DataAccess.Migrations
 {
     [DbContext(typeof(BillingDbContext))]
-    [Migration("20250326061243_InitBilling")]
-    partial class InitBilling
+    partial class BillingDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

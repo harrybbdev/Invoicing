@@ -15,7 +15,10 @@ namespace Invoicing.Features.Billing
         public static WebApplicationBuilder InjectBillingDependencies(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<BillingDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetValue<string>("Features:Billing:ConnectionString")));
+                options.UseSqlServer(builder.Configuration.GetValue<string>("Features:Billing:ConnectionString"), options =>
+                {
+                    options.EnableRetryOnFailure();
+                }));
 
             builder.Services
                 .AddScoped<ICustomerQueryService, CustomerQueryService>()

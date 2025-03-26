@@ -23,7 +23,7 @@ builder.Services.AddMediatR(configuration =>
 .AddValidatorsFromAssemblies(featureAssemblies)
 .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-builder.Services.InjectBillingDependencies();
+builder.InjectBillingDependencies();
 
 var app = builder.Build();
 

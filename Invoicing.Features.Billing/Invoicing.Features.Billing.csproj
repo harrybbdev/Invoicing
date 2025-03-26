@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\UseCases\DeleteInvoice\" />
     <Folder Include="Application\UseCases\CancelInvoice\" />
     <Folder Include="Application\UseCases\SendInvoice\" />
     <Folder Include="Application\UseCases\UpdateInvoice\" />
+    <Folder Include="Infrastructure\DataAccess\Migrations\" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -25,6 +25,12 @@
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

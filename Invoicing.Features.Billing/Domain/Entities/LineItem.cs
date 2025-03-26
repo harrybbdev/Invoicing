@@ -4,31 +4,30 @@
     {
         public Guid UniqueId { get; }
         public UnitDescription Description { get; set; }
-        public UnitPrice UnitPrice { get; set; }
-        public UnitQuantity UnitQuantity { get; set; }
+        public UnitPrice Price { get; set; }
+        public UnitQuantity Quantity { get; set; }
         public Tax Tax { get; set; }
 
-        public double Total => Tax.ApplyTax(UnitPrice.Value * UnitQuantity.Value);
+        public double Total => Tax.ApplyTax(Price.Value * Quantity.Value);
 
         public LineItem(
             UnitDescription description,
-            UnitPrice unitPrice,
-            UnitQuantity unitQuantity,
-            Tax tax)
-            : this(Guid.NewGuid(), description, unitPrice, unitQuantity, tax) { }
+            UnitPrice price,
+            UnitQuantity quantity,
+            Tax tax) : this(Guid.NewGuid(), description, price, quantity, tax) { }
 
         private LineItem(
             Guid uniqueId,
             UnitDescription description,
-            UnitPrice unitPrice,
-            UnitQuantity unitQuantity,
+            UnitPrice price,
+            UnitQuantity quantity,
             Tax tax)
         {
             UniqueId = uniqueId;
-            Description = description;
-            UnitPrice = unitPrice;
-            UnitQuantity = unitQuantity;
-            Tax = tax;
+            Tax = default!;
+            Quantity = default!;
+            Price = default!;
+            Description = default!;
         }
     }
 }

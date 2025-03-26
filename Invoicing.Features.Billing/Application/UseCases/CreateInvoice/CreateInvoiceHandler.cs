@@ -58,8 +58,8 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
                         UniqueId = li.UniqueId,
                         Description = li.Description.Value,
                         TaxPercentage = li.Tax.TaxPercentage,
-                        UnitPrice = li.UnitPrice.Value,
-                        UnitQuantity = li.UnitQuantity.Value,
+                        UnitPrice = li.Price.Value,
+                        UnitQuantity = li.Quantity.Value,
                     };
                 }).ToList(),
                 PaymentDeadline = invoice.PaymentDeadline,

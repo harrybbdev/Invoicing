@@ -11,5 +11,7 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BillingDbContext).Assembly);
         }
+
+        public BillingDbContext(DbContextOptions options) : base(options) { }
     }
 }

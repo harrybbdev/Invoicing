@@ -61,8 +61,8 @@ namespace Invoicing.Features.Billing.Domain.Entities
         {
             IssueDate = issueDate;
             PaymentDeadline = paymentDeadline;
-            LineItems = lineItems;
             Status = status;
+            LineItems = lineItems;
             Currency = currency;
             Status = status;
             Currency = currency;
@@ -138,12 +138,12 @@ namespace Invoicing.Features.Billing.Domain.Entities
 
             if (unitPrice != null)
             {
-                matchingLineItem.UnitPrice = unitPrice;
+                matchingLineItem.Price = unitPrice;
             }
 
             if (unitQuantity != null)
             {
-                matchingLineItem.UnitQuantity = unitQuantity;
+                matchingLineItem.Quantity = unitQuantity;
             }
 
             if (tax != null)

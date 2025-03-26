@@ -8,23 +8,7 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<Invoice> builder)
         {
-            builder.OwnsMany(i => i.LineItems, li =>
-            {
-                li.OwnsOne(x => x.UnitPrice, up =>
-                {
-                    up.Property(x => x.Value).IsRequired();
-                });
-
-                li.OwnsOne(x => x.UnitQuantity, up =>
-                {
-                    up.Property(x => x.Value).IsRequired();
-                });
-
-                li.OwnsOne(x => x.Tax, up =>
-                {
-                    up.Property(x => x.TaxPercentage).IsRequired();
-                });
-            });
+            builder.HasMany(i => i.LineItems).WithOne();
 
             builder.Property(i => i.Status)
                 .HasConversion<string>()

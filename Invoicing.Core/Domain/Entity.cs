@@ -1,11 +1,11 @@
 ﻿namespace Invoicing.Core.Domain
 {
-    public class AggregateRoot
+    public class Entity
     {
         public int Id { get; set; }
         public Guid UniqueId { get; }
 
-        public AggregateRoot(Guid uniqueId)
+        public Entity(Guid uniqueId)
         {
             UniqueId = uniqueId;
         }

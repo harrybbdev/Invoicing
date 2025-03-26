@@ -2,7 +2,7 @@
 
 namespace Invoicing.Features.Billing.Domain.Entities
 {
-    public class Invoice : AggregateRoot
+    public class Invoice : Entity
     {
         public static Invoice CreateInvoice(
             Guid uniqueId,
@@ -16,10 +16,12 @@ namespace Invoicing.Features.Billing.Domain.Entities
                 DateTime.MinValue,
                 paymentDeadline,
                 null,
-                lineItems,
                 Status.Draft,
                 currency,
-                customerUniqueId);
+                customerUniqueId)
+            {
+                LineItems = lineItems
+            };
         }
 
         public static Invoice CreateInvoice(Guid customerUniqueId)
@@ -29,7 +31,6 @@ namespace Invoicing.Features.Billing.Domain.Entities
                 DateTime.MinValue,
                 DateTime.MinValue,
                 null,
-                [],
                 Status.Draft,
                 Currency.GBP,
                 customerUniqueId);
@@ -54,7 +55,6 @@ namespace Invoicing.Features.Billing.Domain.Entities
             DateTime issueDate,
             DateTime paymentDeadline,
             string? cancellationReason,
-            List<LineItem> lineItems,
             Status status,
             Currency currency,
             Guid customerUniqueId) : base(uniqueId)
@@ -62,7 +62,7 @@ namespace Invoicing.Features.Billing.Domain.Entities
             IssueDate = issueDate;
             PaymentDeadline = paymentDeadline;
             Status = status;
-            LineItems = lineItems;
+            LineItems = [];
             Currency = currency;
             Status = status;
             Currency = currency;
@@ -96,12 +96,16 @@ namespace Invoicing.Features.Billing.Domain.Entities
         }
 
         public void AddLineItem(
-            UnitDescription description,
-            UnitPrice unitPrice,
-            UnitQuantity unitQuantity,
-            Tax tax)
+            string description,
+            double price,
+            int quantity,
+            double taxPercentage)
         {
-            LineItems.Add(new LineItem(description, unitPrice, unitQuantity, tax));
+            LineItems.Add(LineItem.CreateLineItem(
+                description,
+                price,
+                quantity,
+                taxPercentage));
         }
 
         public void RemoteLineItem(Guid lineItemUniqueId)

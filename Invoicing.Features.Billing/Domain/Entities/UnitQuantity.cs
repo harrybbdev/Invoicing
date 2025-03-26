@@ -12,11 +12,11 @@
             return new UnitQuantity(unitQuantity);
         }
 
-        public int Value { get; }
+        public int Value { get; private set; }
 
-        private UnitQuantity(int unitQuantity)
+        private UnitQuantity(int value)
         {
-            Value = unitQuantity;
+            Value = value;
         }
     }
 }

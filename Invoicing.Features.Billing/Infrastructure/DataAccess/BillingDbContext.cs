@@ -6,6 +6,7 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess
     public class BillingDbContext : DbContext
     {
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<LineItem> LineItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

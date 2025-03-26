@@ -12,11 +12,11 @@
             return new UnitDescription(unitDescription);
         }
 
-        public string Value { get; }
+        public string Value { get; private set; }
 
-        private UnitDescription(string unitDescription)
+        private UnitDescription(string value)
         {
-            Value = unitDescription;
+            Value = value;
         }
     }
 }

@@ -8,7 +8,7 @@
             return new Tax(taxPercentage);
         }
 
-        public double TaxPercentage { get; }
+        public double TaxPercentage { get; private set; }
 
         public Tax(double taxPercentage)
         {

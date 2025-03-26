@@ -12,12 +12,11 @@
             return new UnitPrice(unitPrice);
         }
 
-        public double Value { get; }
+        public double Value { get; private set; }
 
-        private UnitPrice(double unitPrice)
+        private UnitPrice(double value)
         {
-            Value = unitPrice;
+            Value = value;
         }
-
     }
 }

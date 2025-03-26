@@ -29,11 +29,11 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
 
             var lineItems = request.LineItems.Select(li =>
             {
-                return new LineItem(
-                    UnitDescription.CreateUnitDescription(li.Description),
-                    UnitPrice.CreateUnitPrice(li.UnitPrice),
-                    UnitQuantity.CreateUnitQuantity(li.UnitQuantity),
-                    Tax.CreateTax(li.TaxPercentage));
+                return LineItem.CreateLineItem(
+                    li.Description,
+                    li.UnitPrice,
+                    li.UnitQuantity,
+                    li.TaxPercentage);
             });
 
             var invoice = Invoice.CreateInvoice(

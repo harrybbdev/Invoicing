@@ -8,6 +8,7 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<LineItem> builder)
         {
+            builder.ComplexProperty(b => b.Description);
             builder.ComplexProperty(b => b.Quantity);
             builder.ComplexProperty(b => b.Price);
             builder.ComplexProperty(b => b.Tax);

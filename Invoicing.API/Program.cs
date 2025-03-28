@@ -1,3 +1,4 @@
+using Azure.Messaging.ServiceBus;
 using FluentValidation;
 using Invoicing.API.Setup.MediatR;
 using Invoicing.API.Setup.Middleware;
@@ -21,8 +22,12 @@ builder.Services.AddMediatR(configuration =>
     configuration.RegisterServicesFromAssemblies(featureAssemblies);
 })
 .AddValidatorsFromAssemblies(featureAssemblies)
-.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
+.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
+.AddSingleton(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    return new ServiceBusClient(config["ServiceBusConnectionString"]);
+});
 builder.InjectBillingDependencies();
 
 var app = builder.Build();

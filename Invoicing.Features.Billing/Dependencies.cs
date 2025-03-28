@@ -1,4 +1,5 @@
-﻿using Invoicing.Features.Billing.Application.Services;
+﻿using Invoicing.Features.Billing.Application;
+using Invoicing.Features.Billing.Application.Services;
 using Invoicing.Features.Billing.Domain.Repositories;
 using Invoicing.Features.Billing.Infrastructure.DataAccess;
 using Invoicing.Features.Billing.Infrastructure.Repositories;
@@ -21,6 +22,7 @@ namespace Invoicing.Features.Billing
                 }));
 
             builder.Services
+                .AddScoped<UnitOfWork>()
                 .AddScoped<ICustomerQueryService, CustomerQueryService>()
                 .AddScoped<IInvoiceRepository, InvoiceRepository>();
 

@@ -10,13 +10,16 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
     {
         private readonly ICustomerQueryService _customerQueryService;
         private readonly IInvoiceRepository _invoiceRepository;
+        private readonly UnitOfWork _unitOfWork;
 
         public CreateInvoiceHandler(
             ICustomerQueryService customerQueryService,
-            IInvoiceRepository invoiceRepository)
+            IInvoiceRepository invoiceRepository,
+            UnitOfWork unitOfWork)
         {
             _customerQueryService = customerQueryService;
             _invoiceRepository = invoiceRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<CreateInvoiceResponse> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
@@ -44,6 +47,8 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
                 request.CustomerUniqueId);
 
             await _invoiceRepository.AddInvoice(invoice);
+
+            await _unitOfWork.SaveChanges();
 
             return new CreateInvoiceResponse()
             {

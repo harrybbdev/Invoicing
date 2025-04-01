@@ -11,9 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\Outbox\DataAccess\Migrations\" />
-    <Folder Include="Infrastructure\Outbox\DataAccess\Configuration\" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>

@@ -11,12 +11,12 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
     {
         private readonly ICustomerQueryService _customerQueryService;
         private readonly IInvoiceRepository _invoiceRepository;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly BillingUnitOfWork _unitOfWork;
 
         public CreateInvoiceHandler(
             ICustomerQueryService customerQueryService,
             IInvoiceRepository invoiceRepository,
-            UnitOfWork unitOfWork)
+            BillingUnitOfWork unitOfWork)
         {
             _customerQueryService = customerQueryService;
             _invoiceRepository = invoiceRepository;

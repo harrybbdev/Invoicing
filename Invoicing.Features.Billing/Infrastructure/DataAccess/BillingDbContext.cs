@@ -1,4 +1,5 @@
-﻿using Invoicing.Features.Billing.Domain.Entities;
+﻿using Invoicing.Core.Domain;
+using Invoicing.Features.Billing.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Invoicing.Features.Billing.Infrastructure.DataAccess
@@ -7,6 +8,8 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess
     {
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

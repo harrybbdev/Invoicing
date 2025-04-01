@@ -1,6 +1,4 @@
-﻿using Invoicing.Core.Domain;
-
-namespace Invoicing.Core.Infrastructure.Outbox
+﻿namespace Invoicing.Core.Domain
 {
     public class OutboxMessage : Entity
     {
@@ -11,11 +9,9 @@ namespace Invoicing.Core.Infrastructure.Outbox
         public bool IsPublished => DatePublished != null;
 
         public OutboxMessage(
-            DateTime dateOccurred,
             string type,
-            string payload,
-            DateTime? datePublished)
-            : this(Guid.NewGuid(), dateOccurred, type, payload, datePublished) { }
+            string payload)
+            : this(Guid.NewGuid(), DateTime.UtcNow, type, payload, null) { }
 
         private OutboxMessage(
             Guid uniqueId,

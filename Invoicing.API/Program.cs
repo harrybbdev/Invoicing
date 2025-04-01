@@ -26,7 +26,7 @@ builder.Services.AddMediatR(configuration =>
 .AddSingleton(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
-    return new ServiceBusClient(config["ServiceBusConnectionString"]);
+    return new ServiceBusClient(config["ServiceBus:ConnectionString"]);
 });
 builder.InjectBillingDependencies();
 

@@ -2,6 +2,7 @@
 using Invoicing.Features.Billing.Application.Services;
 using Invoicing.Features.Billing.Domain.Entities;
 using Invoicing.Features.Billing.Domain.Repositories;
+using Invoicing.Features.Billing.Infrastructure;
 using MediatR;
 
 namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
@@ -48,7 +49,7 @@ namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
 
             await _invoiceRepository.AddInvoice(invoice);
 
-            await _unitOfWork.SaveChanges();
+            await _unitOfWork.SaveChanges(cancellationToken);
 
             return new CreateInvoiceResponse()
             {

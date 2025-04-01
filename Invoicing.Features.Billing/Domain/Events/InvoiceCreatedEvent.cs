@@ -1,6 +1,8 @@
-﻿namespace Invoicing.Features.Billing.Domain.Events
+﻿using Invoicing.Core.Domain;
+
+namespace Invoicing.Features.Billing.Domain.Events
 {
-    public class InvoiceCreatedEvent
+    public class InvoiceCreatedEvent : Event
     {
     }
 }

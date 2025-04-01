@@ -1,8 +1,13 @@
-﻿namespace Invoicing.Core.Domain
+﻿
+namespace Invoicing.Core.Domain
 {
-    public class AggregateRoot
+    public class AggregateRoot : Entity
     {
         public List<Event> DomainEvents { get; private set; } = [];
+
+        public AggregateRoot(Guid uniqueId) : base(uniqueId)
+        {
+        }
 
         protected void AddDomainEvent(Event domainEvent)
         {

@@ -1,8 +1,9 @@
 ﻿using Invoicing.Core.Domain;
+using Invoicing.Features.Billing.Domain.Events;
 
 namespace Invoicing.Features.Billing.Domain.Entities
 {
-    public class Invoice : Entity
+    public class Invoice : AggregateRoot
     {
         public static Invoice CreateInvoice(
             Guid uniqueId,
@@ -11,7 +12,7 @@ namespace Invoicing.Features.Billing.Domain.Entities
             Currency currency,
             Guid customerUniqueId)
         {
-            return new Invoice(
+            var invoice = new Invoice(
                 uniqueId,
                 DateTime.MinValue,
                 paymentDeadline,
@@ -20,20 +21,12 @@ namespace Invoicing.Features.Billing.Domain.Entities
                 currency,
                 customerUniqueId)
             {
-                LineItems = lineItems
+                LineItems = lineItems,
             };
-        }
 
-        public static Invoice CreateInvoice(Guid customerUniqueId)
-        {
-            return new Invoice(
-                Guid.NewGuid(),
-                DateTime.MinValue,
-                DateTime.MinValue,
-                null,
-                Status.Draft,
-                Currency.GBP,
-                customerUniqueId);
+            invoice.AddDomainEvent(new InvoiceCreatedEvent());
+
+            return invoice;
         }
 
         public DateTime IssueDate { get; private set; }

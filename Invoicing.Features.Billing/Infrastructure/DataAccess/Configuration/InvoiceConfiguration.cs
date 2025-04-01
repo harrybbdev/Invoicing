@@ -8,6 +8,8 @@ namespace Invoicing.Features.Billing.Infrastructure.DataAccess.Configuration
     {
         public void Configure(EntityTypeBuilder<Invoice> builder)
         {
+            builder.Ignore(i => i.DomainEvents);
+
             builder.HasMany(i => i.LineItems).WithOne();
 
             builder.Property(i => i.Status)

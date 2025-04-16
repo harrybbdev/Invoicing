@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;\red23\green54\blue93;\red54\green96\blue145;\red79\green129\blue189;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c9020\c21176\c36471;\csgenericrgb\c21176\c37647\c56863;\csgenericrgb\c30980\c50588\c74118;
+}
+\vieww12540\viewh16140\viewkind1
+\deftab720
+\pard\pardeftab720\ri0\sa300\partightenfactor0
+
+\f0\fs52 \cf2 Invoicing\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Overview\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Invoicing is a system for creating, sending, tracking, and managing invoices for customers. It is designed to support internal finance teams, external clients, and any integration points that require invoice or payment data. The system prioritizes accuracy, clarity, and traceability.\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Invoice\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 An invoice is a formal request for payment. It includes one or more charges (called line items), a due date, and the customer it is billed to. Invoices must be trackable from creation to payment and auditable throughout their lifecycle.\uc0\u8232 \u8232 Each invoice must track:\u8232 - A unique invoice number\u8232 - The customer being billed\u8232 - A list of items or services being charged\u8232 - The total amount due (including taxes and discounts)\u8232 - The currency being used\u8232 - Status: Draft, Sent, Paid, Overdue, or Cancelled\u8232 - Key dates: issue date, due date, payment date\u8232 - Who created or edited the invoice\u8232 - Optional notes or internal comments\u8232 \u8232 Invoice behaviours:\u8232 - Can be created in a draft state\u8232 - Can be edited while in draft (customer, dates, line items, etc.)\u8232 - Becomes locked once sent (only status and payment can change)\u8232 - Can be cancelled (with a reason)\u8232 - Can receive one or more payments until the balance is settled\u8232 - Can be marked as overdue once the due date passes and payment hasn\'92t been received\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Invoice Line Items\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Line items represent the individual charges on an invoice. These could be one-time products, services, or recurring fees.\uc0\u8232 \u8232 Each line item must track:\u8232 - A description (e.g., \'93Consulting \'96 10 hours\'94)\u8232 - Quantity (e.g., 10 units or hours)\u8232 - Unit price\u8232 - Tax rate\u8232 - Line total (automatically calculated)\u8232 \u8232 Line item behaviours:\u8232 - Can be added, removed, or edited while the invoice is in draft\u8232 - Contribute to the subtotal and final invoice total\u8232 - Cannot be modified once the invoice is sent\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Customer\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Customers are individuals or businesses who receive invoices. Each invoice must be tied to an existing customer.\uc0\u8232 \u8232 Each customer must track:\u8232 - Name and contact details\u8232 - Billing address\u8232 - Email address for invoice delivery\u8232 - Customer type: Individual or Business\u8232 - VAT/tax ID (if applicable)\u8232 - Default currency\u8232 - Preferred payment terms (e.g., Net 30 = 30 days to pay)\u8232 \u8232 Customer behaviours:\u8232 - Can be created or updated by internal users\u8232 - Can be deactivated or removed (depending on audit and data retention rules)\u8232 - Can be merged with another customer (e.g., duplicate cleanup)\u8232 - Historical invoices must retain original customer data even if it later changes\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Payments\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Payments are records of money received from customers to settle invoices.\uc0\u8232 \u8232 Each payment must track:\u8232 - Which invoice it applies to\u8232 - Amount paid\u8232 - Payment method (e.g., bank transfer, credit card, PayPal)\u8232 - Date and time of the payment\u8232 - Reference number or confirmation code\u8232 - Status: Initiated, Settled, Failed\u8232 \u8232 Payment behaviours:\u8232 - Can be recorded against an invoice\u8232 - Cannot exceed the amount still owed\u8232 - Can be split across multiple invoices (advanced)\u8232 - Updates the invoice\'92s payment status (e.g., partial, fully paid)\u8232 - Cannot be applied to a draft invoice\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Audit Trail\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Every action in the system must be logged for accountability and compliance.\uc0\u8232 \u8232 Each audit entry must track:\u8232 - What happened (e.g., \'93Invoice sent\'94, \'93Payment received\'94)\u8232 - Who performed the action\u8232 - When it happened\u8232 - Which entity it affected (e.g., invoice ID, customer ID)\u8232 - A summary or detail of what changed\u8232 \u8232 Audit trail behaviours:\u8232 - Cannot be edited or deleted\u8232 - Can be searched or filtered by entity or time range\u8232 - Must be visible to administrators or compliance officers\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Search and Reporting\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 The system must support fast and flexible search and reporting across invoices, customers, and payments.\uc0\u8232 \u8232 Must support:\u8232 - Searching by customer name, invoice number, status, date, or amount\u8232 - Filtering (e.g., \'93unpaid invoices from last month\'94)\u8232 - Summary views (e.g., total overdue this quarter)\u8232 - Exporting (e.g., PDF, CSV)\u8232 - Dashboards for key metrics\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Notifications\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Notifications inform customers and admins of important invoice and payment events.\uc0\u8232 \u8232 Notification types:\u8232 - Invoice issued\u8232 - Payment received\u8232 - Overdue reminder\u8232 - Payment failed\u8232 - Invoice cancelled\u8232 \u8232 Each notification must track:\u8232 - Recipient (email or SMS)\u8232 - Type of notification\u8232 - Delivery status (sent, failed, bounced)\u8232 - Timestamp\u8232 - Related invoice or customer\u8232 \u8232 Notification behaviours:\u8232 - Automatically triggered by relevant events\u8232 - Optionally retried if delivery fails\u8232 - Logged for traceability\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 External Access (APIs or Client Portal)\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Some clients or systems may need controlled access to their invoices.\uc0\u8232 \u8232 Access rules:\u8232 - Only see invoices related to that customer\u8232 - Can view status, download PDF copies\u8232 - Cannot edit invoice or customer data\u8232 - Must authenticate and be authorized\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Invoice Lifecycle\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 1. Create draft invoice\uc0\u8232    - Add line items\u8232    - Select customer\u8232    - Set issue and due dates\u8232    - Optional: add notes, discounts, tax settings\u8232 \u8232 2. Send invoice\u8232    - Status becomes \'93Sent\'94\u8232    - Structure becomes locked\u8232    - Invoice number becomes official\u8232    - Notification sent to customer\u8232    - Audit log entry recorded\u8232 \u8232 3. Receive payment\u8232    - Payment is recorded\u8232    - Status updates to \'93Paid\'94 or \'93Partially Paid\'94\u8232    - Audit log entry recorded\u8232    - Optional payment confirmation sent\u8232 \u8232 4. Mark overdue (automatic)\u8232    - If past due date and unpaid\u8232    - Status becomes \'93Overdue\'94\u8232    - Overdue reminder can be sent\u8232 \u8232 5. Cancel invoice (optional)\u8232    - Only allowed if not paid\u8232    - Requires a reason\u8232    - Logged in audit trail\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Rules and Constraints\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 - Invoices must be tied to an existing customer\uc0\u8232 - A draft invoice can be freely edited; once sent, it becomes locked\u8232 - Payments cannot be applied to draft invoices\u8232 - Total invoice amount must be calculated from line items, not entered manually\u8232 - Deleted or deactivated customers must not be used in new invoices\u8232 - Historical records must remain intact even if customer details change\u8232 - Tax calculations must be consistent and auditable\u8232 - Audit logs must be preserved and not editable\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Notes on Data Access and Separation\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 - Customer data is owned and managed by a separate system or feature\uc0\u8232 - Invoices can only reference customers via a validated customer list\u8232 - A read-only projection or lookup table is used to confirm valid customers\u8232 - Deleting a customer removes or deactivates them from the lookup list\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Technical Notes: Data Access and Storage Recommendations\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 This section provides guidance on how to back the InvoicePro system with appropriate data storage solutions that align with its domain-driven design and bounded context separation.\uc0\u8232 \u8232 1. **SQL Server for Core Transactional Data**\u8232    - Use SQL Server for storing invoice, line items, payments, and customer details within their respective owning contexts.\u8232    - SQL is ideal for enforcing referential integrity, supporting ACID transactions, and running complex relational queries.\u8232    - Billing and Payments features should use SQL to ensure consistency and traceable financial accuracy.\u8232 \u8232 2. **Cosmos DB for Read Projections and Event Logs**\u8232    - Use Cosmos DB (or another NoSQL/document DB) for fast-access, denormalized projections such as:\u8232      - Customer summary lookups (used by Billing to validate customer IDs)\u8232      - Invoice summary views for dashboards or APIs\u8232      - Audit logs for traceability and compliance\u8232    - Cosmos supports partitioning and high availability, which makes it suitable for high-volume reads and scalable query access.\u8232 \u8232 3. **Event-Driven Projection Updates**\u8232    - Use domain events (`CustomerCreated`, `InvoiceSent`, `PaymentReceived`, etc.) to update read models stored in Cosmos.\u8232    - This avoids tight coupling between features and supports eventual consistency between write and read models.\u8232 \u8232 4. **Don't Share Write Models Across Contexts**\u8232    - Billing should never access or modify Customer data directly.\u8232    - Instead, use projection data or expose limited query interfaces that reflect the current state of relevant data.\u8232 \u8232 5. **Use Soft Deletes for Deactivation**\u8232    - For auditability and safety, prefer setting an `isActive` flag to false in projections rather than deleting documents entirely.\u8232    - This ensures historical integrity and reduces accidental data loss.\u8232 \u8232 6. **Validate with Read Models, Not Repositories**\u8232    - Features like Billing should validate foreign keys (e.g., customerId) against read models or lookup stores.\u8232    - Avoid reaching into another feature's repository or database.\u8232 \u8232 This hybrid approach ensures strong consistency where needed and flexible, high-performance reads where scale matters.\
+\pard\pardeftab720\ri0\sl276\slmult1\sb480\partightenfactor0
+
+\f1\b\fs28 \cf3 Technical Diagrams and Tooling Recommendations\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 Below are recommended tools and technologies that align well with the design principles of InvoicePro:\uc0\u8232 \u8232 1. **Entity Framework Core (EF Core)** \'96 For data access in SQL Server. It supports owned types, value objects, and mapping domain models cleanly.\u8232 \u8232 2. **Cosmos DB SDK / Azure SDK** \'96 For working with Cosmos DB read models, managing partition keys, and handling soft deletes.\u8232 \u8232 3. **MediatR** \'96 For in-process messaging between features in a vertical slice architecture, and for publishing domain events.\u8232 \u8232 4. **Hangfire or Azure Functions** \'96 For background processing, especially for updating projections asynchronously.\u8232 \u8232 5. **Serilog + Seq** \'96 For logging and diagnostics across bounded contexts.\u8232 \u8232 6. **FluentValidation** \'96 For command validation before performing business logic.\u8232 \u8232 7. **Message Bus (e.g., Azure Service Bus, RabbitMQ, or CAP)** \'96 For publishing and subscribing to integration events across features, enabling eventual consistency.\u8232 \u8232 8. **Automapper (optional)** \'96 For mapping between domain objects and DTOs in projections or APIs.\u8232 \u8232 9. **Swagger / NSwag** \'96 For generating and documenting APIs for external access or partner integrations.\
+\pard\pardeftab720\ri0\sl276\slmult1\sb200\partightenfactor0
+
+\f1\b\fs26 \cf4 Architecture Diagram (Conceptual Overview)\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b0\fs22 \cf0 The following diagram shows the relationship between bounded contexts and read projections using Cosmos DB:\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\qc\partightenfactor0
+\cf0 \
+}

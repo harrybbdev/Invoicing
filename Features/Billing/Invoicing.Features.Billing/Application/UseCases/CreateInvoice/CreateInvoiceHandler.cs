@@ -1,31 +1,31 @@
 ﻿using Invoicing.Core.Exceptions;
-using Invoicing.Features.Billing.Application.Services;
 using Invoicing.Features.Billing.Domain.Entities;
 using Invoicing.Features.Billing.Domain.Repositories;
 using Invoicing.Features.Billing.Infrastructure;
+using Invoicing.Features.Customers.Contracts.ExternalServices;
 using MediatR;
 
 namespace Invoicing.Features.Billing.Application.UseCases.CreateInvoice
 {
     public class CreateInvoiceHandler : IRequestHandler<CreateInvoiceCommand, CreateInvoiceResponse>
     {
-        private readonly ICustomerQueryService _customerQueryService;
+        private readonly ICustomerExternalService _customerService;
         private readonly IInvoiceRepository _invoiceRepository;
         private readonly BillingUnitOfWork _unitOfWork;
 
         public CreateInvoiceHandler(
-            ICustomerQueryService customerQueryService,
+            ICustomerExternalService customerQueryService,
             IInvoiceRepository invoiceRepository,
             BillingUnitOfWork unitOfWork)
         {
-            _customerQueryService = customerQueryService;
+            _customerService = customerQueryService;
             _invoiceRepository = invoiceRepository;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<CreateInvoiceResponse> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
         {
-            var doesCustomerExist = await _customerQueryService.DoesCustomerExist(request.CustomerUniqueId);
+            var doesCustomerExist = await _customerService.DoesCustomerExist(request.CustomerUniqueId);
             if (!doesCustomerExist)
             {
                 throw new NotFoundException($"Customer with ID {request.CustomerUniqueId} could not be found.");

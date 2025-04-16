@@ -3,6 +3,7 @@ using FluentValidation;
 using Invoicing.API.Setup.MediatR;
 using Invoicing.API.Setup.Middleware;
 using Invoicing.Features.Billing;
+using Invoicing.Features.Customers;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +29,9 @@ builder.Services.AddMediatR(configuration =>
     var config = sp.GetRequiredService<IConfiguration>();
     return new ServiceBusClient(config["ServiceBus:ConnectionString"]);
 });
-builder.InjectBillingDependencies();
+builder
+    .InjectBillingDependencies()
+    .InjectCustomerDependencies();
 
 var app = builder.Build();
 

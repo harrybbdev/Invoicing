@@ -1,6 +1,6 @@
-﻿namespace Invoicing.Features.Billing.Application.Services
+﻿namespace Invoicing.Features.Customers.Contracts.ExternalServices
 {
-    public class Customer
+    public class CustomerDTO
     {
         public required Guid UniqueId { get; set; }
         public required string Name { get; set; }

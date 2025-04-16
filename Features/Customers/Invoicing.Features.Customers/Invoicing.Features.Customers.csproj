@@ -6,17 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="IntegrationEvents\" />
-	</ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Invoicing.Features.Customers.Contracts\Invoicing.Features.Customers.Contracts.csproj" />
+  </ItemGroup>
 
 </Project>

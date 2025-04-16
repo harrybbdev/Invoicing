@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.4" />
     <PackageReference Include="EfCore.SchemaCompare" Version="8.2.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
@@ -21,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Features\Billing\Invoicing.Features.Billing\Invoicing.Features.Billing.csproj" />
+    <ProjectReference Include="..\Features\Customers\Invoicing.Features.Customers\Invoicing.Features.Customers.csproj" />
     <ProjectReference Include="..\Invoicing.Core\Invoicing.Core.csproj" />
-    <ProjectReference Include="..\Invoicing.Features.Billing\Invoicing.Features.Billing.csproj" />
   </ItemGroup>
 
 </Project>
